@@ -40,14 +40,19 @@ jobs:
   
   build:
     needs: test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'ubuntu-20.04']
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build
       run: go build -v main.go
+
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+      with:
+    # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
+        name: programa_em_go
+    # Destination path. Supports basic tilde expansion. Defaults to $GITHUB_WORKSPACE
+        path: main    
 
   docker:
     needs: build
