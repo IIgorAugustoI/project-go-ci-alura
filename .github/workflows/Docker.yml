@@ -13,9 +13,10 @@ jobs:
 
     - name: Setup Docker build
       uses: docker/setup-buildx-action@v3.6.1
-    
-    - name: Docker Login 
-      uses: docker/login-action@v2.0.0 
-      with: 
+    - name: Docker Login
+      uses: docker/login-action@v3.3.0
+      with:
         username: igoraugustoi
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+          
+        
