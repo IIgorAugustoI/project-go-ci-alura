@@ -44,7 +44,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      id: ${{ github.event.workflow_run.id }}
       run: go build -v main.go
       
 
@@ -55,6 +54,7 @@ jobs:
         name: programa
     # Destination path. Supports basic tilde expansion. Defaults to $GITHUB_WORKSPACE
         path: main
+        run-id: ${{ github.event.workflow_run.id }}
 
   docker:
     needs: build
